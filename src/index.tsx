@@ -1,8 +1,11 @@
+import React from 'react';
 import {
   requireNativeComponent,
   UIManager,
   Platform,
   ViewStyle,
+  StyleSheet,
+  View,
 } from 'react-native';
 
 const LINKING_ERROR =
@@ -11,16 +14,35 @@ const LINKING_ERROR =
   '- You rebuilt the app after installing the package\n' +
   '- You are not using Expo managed workflow\n';
 
-type MaskProps = {
-  color: string;
+type NativeMaskProps = {
   style: ViewStyle;
+  children: React.ReactNode;
 };
 
 const ComponentName = 'MaskView';
 
-export const MaskView =
+const NativeMaskView =
   UIManager.getViewManagerConfig(ComponentName) != null
-    ? requireNativeComponent<MaskProps>(ComponentName)
+    ? requireNativeComponent<NativeMaskProps>(ComponentName)
     : () => {
         throw new Error(LINKING_ERROR);
       };
+
+export type MaskViewProps = NativeMaskProps & {
+  MaskElement: () => React.ReactElement;
+};
+
+export const MaskView: React.FC<MaskViewProps> = ({
+  style,
+  children,
+  MaskElement,
+}) => {
+  return (
+    <NativeMaskView style={style}>
+      <View style={StyleSheet.absoluteFill} pointerEvents="none">
+        <MaskElement />
+      </View>
+      {children}
+    </NativeMaskView>
+  );
+};

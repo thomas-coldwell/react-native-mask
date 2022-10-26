@@ -16,10 +16,7 @@
     "react-native-mask.podspec",
     "!lib/typescript/example",
     "!android/build",
-    "!ios/build",
-    "!**/__tests__",
-    "!**/__fixtures__",
-    "!**/__mocks__"
+    "!ios/build"
   ],
   "scripts": {
     "test": "jest",
@@ -46,7 +43,6 @@
     "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
-    "@arkweid/lefthook": "^0.7.7",
     "@babel/eslint-parser": "^7.18.2",
     "@commitlint/config-conventional": "^17.0.2",
     "@react-native-community/eslint-config": "^3.0.2",

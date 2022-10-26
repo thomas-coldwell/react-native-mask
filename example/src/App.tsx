@@ -1,12 +1,25 @@
 import * as React from 'react';
 
-import { StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 import { MaskView } from 'react-native-mask';
+
+const IMG_SOURCE =
+  'https://upload.wikimedia.org/wikipedia/commons/b/b2/Hausziege_04.jpg';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <MaskView color="#32a852" style={styles.box} />
+      {/* <View style={{ height: 400, width: 400, backgroundColor: '#f0f' }} /> */}
+      <MaskView
+        style={styles.maskView}
+        MaskElement={() => <View style={styles.maskContainer} />}
+      >
+        <Image
+          style={{ flex: 1, width: 600, backgroundColor: '#f0f' }}
+          source={{ uri: IMG_SOURCE }}
+        />
+        {/* <View style={{ height: 300, width: 300, backgroundColor: '#f0f' }} /> */}
+      </MaskView>
     </View>
   );
 }
@@ -14,12 +27,14 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#FFc',
   },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
+  maskView: {
+    flex: 1,
+  },
+  maskContainer: {
+    flex: 1,
+    width: 300,
+    backgroundColor: '#AAA',
   },
 });

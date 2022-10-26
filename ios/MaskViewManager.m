@@ -2,6 +2,4 @@
 
 @interface RCT_EXTERN_MODULE(MaskViewManager, RCTViewManager)
 
-RCT_EXPORT_VIEW_PROPERTY(color, NSString)
-
 @end
